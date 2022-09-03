@@ -1,8 +1,7 @@
 package com.getmyisland.irc;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Date;
+import java.util.List;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -12,15 +11,13 @@ import jakarta.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class TestServlet
  */
-public class TestServlet extends HttpServlet {
+public class ServerSelectionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static final String HTML_START = "<html><body>";
-	public static final String HTML_END = "</body></html>";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public TestServlet() {
+	public ServerSelectionServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -31,10 +28,15 @@ public class TestServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
-		Date date = new Date();
-		out.println(HTML_START + "<h2>Hi There!</h2><br/><h3>Date=" + date + "</h3>" + HTML_END);
-
+		List<String> serverNames = IRCServerHandler.getIRCServerNames();
+		if(serverNames != null) {
+			serverNames.stream().forEach((serverName) -> System.out.println(serverName));
+			System.out.println(serverNames);
+		} else {
+			System.out.println("Server Names are null");
+		}
+		
+		response.getWriter().append(new java.util.Date().toString());
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

@@ -3,7 +3,7 @@
   <display-name>GetMyIsland IRC Client</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>server_selection.jsp</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.jsp</welcome-file>
@@ -11,12 +11,12 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>TestServlet</display-name>
-    <servlet-name>TestServlet</servlet-name>
-    <servlet-class>com.getmyisland.irc.TestServlet</servlet-class>
+    <display-name>Server Selection</display-name>
+    <servlet-name>ServerSelectionServlet</servlet-name>
+    <servlet-class>com.getmyisland.irc.ServerSelectionServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>TestServlet</servlet-name>
-    <url-pattern>/TestServlet</url-pattern>
+    <servlet-name>ServerSelectionServlet</servlet-name>
+    <url-pattern>/ServerSelectionServlet</url-pattern>
   </servlet-mapping>
 </web-app>
