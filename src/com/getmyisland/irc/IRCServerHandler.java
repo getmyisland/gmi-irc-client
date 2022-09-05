@@ -45,9 +45,20 @@ public class IRCServerHandler {
 				System.out.println(server);
 				continue;
 			}
+			
 			// First value is name, second is url and third is port
 			serverList.add(new IRCServer(server.get(0), server.get(1), Integer.parseInt(server.get(2))));
 		}
 		return serverList;
+	}
+	
+	public static IRCServer getIRCServerByName(String name) {
+		// Go through each server and check the name
+		for(IRCServer server : getIRCServers()) {
+			if(server.getName() == name) {
+				return server;
+			}
+		}
+		return null;
 	}
 }
