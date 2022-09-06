@@ -52,13 +52,16 @@ public class IRCServerHandler {
 		return serverList;
 	}
 	
-	public static IRCServer getIRCServerByName(String name) {
+	public static IRCServer getIRCServerByName(final String name) {
+		List<IRCServer> serverList = getIRCServers();
+		
 		// Go through each server and check the name
-		for(IRCServer server : getIRCServers()) {
-			if(server.getName() == name) {
+		for(IRCServer server : serverList) {
+			if(server.getName().equals(name)) {
 				return server;
 			}
 		}
+		
 		return null;
 	}
 }
