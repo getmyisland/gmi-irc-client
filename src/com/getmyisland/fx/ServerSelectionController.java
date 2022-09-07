@@ -3,7 +3,7 @@ package com.getmyisland.fx;
 import java.io.IOException;
 
 import com.getmyisland.irc.Client;
-import com.getmyisland.irc.IRCConnectionHandler;
+import com.getmyisland.irc.ConnectionHandler;
 import com.getmyisland.irc.IRCServer;
 import com.getmyisland.irc.IRCServerHandler;
 
@@ -66,12 +66,12 @@ public class ServerSelectionController {
 			return;
 		}
 
-		final IRCClientController[] classArr = new IRCClientController[1];
-		IRCClientController ircClientController = null;
+		final ConnectionController[] classArr = new ConnectionController[1];
+		ConnectionController ircClientController = null;
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/getmyisland/fx/IRCClient.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/getmyisland/fx/ConnectionWindow.fxml"));
 			Pane root = loader.load();
-			ircClientController = (IRCClientController) loader.getController();
+			ircClientController = (ConnectionController) loader.getController();
 			classArr[0] = ircClientController; 
 			Client.getStage().getScene().setRoot(root);
 			Client.getStage().setHeight(root.getPrefHeight());
@@ -83,7 +83,7 @@ public class ServerSelectionController {
 		Thread connectionThread = new Thread() {
 			public void run() {
 				// Call connection function
-				IRCConnectionHandler.connect(classArr[0], loginTextField.getText(),
+				ConnectionHandler.connect(classArr[0], loginTextField.getText(),
 						nicknameTextField.getText(), serverURLTextField.getText(),
 						Integer.parseInt(portTextField.getText()));
 			}

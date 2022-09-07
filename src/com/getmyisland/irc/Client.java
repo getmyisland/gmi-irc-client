@@ -14,7 +14,7 @@ public class Client extends Application {
 		Client.stage = stage;
 
 		// Load the server selection document
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/getmyisland/fx/ServerSelection.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/getmyisland/fx/ServerSelectionWindow.fxml"));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 

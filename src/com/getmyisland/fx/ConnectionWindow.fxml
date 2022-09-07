@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.getmyisland.fx.IRCClientController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.getmyisland.fx.ConnectionController">
    <children>
       <TextArea fx:id="chatTextArea" editable="false" layoutX="296.0" layoutY="14.0" prefHeight="527.0" prefWidth="590.0" wrapText="true" AnchorPane.bottomAnchor="58.799999999999955" AnchorPane.leftAnchor="296.0" AnchorPane.rightAnchor="13.600000000000023" AnchorPane.topAnchor="14.0" />
       <ListView fx:id="channelListView" layoutX="14.0" layoutY="14.0" prefHeight="574.0" prefWidth="268.0" AnchorPane.bottomAnchor="11.600000000000023" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />

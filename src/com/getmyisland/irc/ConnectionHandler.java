@@ -7,16 +7,16 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
-import com.getmyisland.fx.IRCClientController;
+import com.getmyisland.fx.ConnectionController;
 
 import javafx.scene.control.TextArea;
 
-public class IRCConnectionHandler {
+public class ConnectionHandler {
 	private static Socket socket = null;
 	private static BufferedWriter bw = null;
 	private static BufferedReader br = null;
 
-	public static void connect(final IRCClientController ircClientController, final String login, final String nickname, final String url, final int port) {
+	public static void connect(final ConnectionController ircClientController, final String login, final String nickname, final String url, final int port) {
 		try {
 			// Places a socket on the IRC server to send bytes
 			socket = new Socket(url, port);
