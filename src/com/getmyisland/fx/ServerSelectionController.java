@@ -1,6 +1,7 @@
 package com.getmyisland.fx;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 import com.getmyisland.irc.Client;
 import com.getmyisland.irc.ConnectionHandler;
@@ -53,8 +54,7 @@ public class ServerSelectionController {
 			return;
 		}
 
-		// TODO with Regex
-		if (!serverURLTextField.getText().contains(".")) {
+		if (!Pattern.matches("^((?!-))(xn--)?[a-z0-9][a-z0-9-_]{0,61}[a-z0-9]{0,1}\\.(xn--)?([a-z0-9\\-]{1,61}|[a-z0-9-]{1,30}\\.[a-z]{2,})$", serverURLTextField.getText())) {
 			statusContentLabel.setText("Server URL is not a valid URL.");
 			return;
 		}
