@@ -1,13 +1,13 @@
 package com.getmyisland.irc;
 
-public class IRCServer {
+public class IrcServer {
 	/** Name of the IRC Server */
 	private String name;
 	
-	/** URL of the server */
+	/** URL of the IRC server */
 	private String url;
 	
-	/** Port the server uses */
+	/** Port the IRC server uses */
 	private int port;
 	
 	/**
@@ -17,7 +17,7 @@ public class IRCServer {
 	 * @param url
 	 * @param port
 	 */
-	public IRCServer(String name, String url, int port) {
+	public IrcServer(String name, String url, int port) {
 		this.name = name;
 		this.url = url;
 		this.port = port;

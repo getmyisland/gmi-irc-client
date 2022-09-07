@@ -1,6 +1,6 @@
 package com.getmyisland.fx;
 
-import com.getmyisland.irc.Client;
+import com.getmyisland.irc.ConnectionHandler;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,13 +20,13 @@ public class ConnectionController {
 
     @FXML
     void onSend(ActionEvent event) {
-
+    	ConnectionHandler.sendMessage(userInputTextField.getText());
+    	userInputTextField.setText("");
     }
     
     @FXML
     private void initialize() {
-    	Client.getStage().hide();
-        Client.getStage().show();
+    	
     }
     
     public TextArea getChatTextArea() {

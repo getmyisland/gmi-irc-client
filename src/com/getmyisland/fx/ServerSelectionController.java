@@ -1,23 +1,20 @@
 package com.getmyisland.fx;
 
-import java.io.IOException;
 import java.util.regex.Pattern;
 
 import com.getmyisland.irc.Client;
 import com.getmyisland.irc.ConnectionHandler;
-import com.getmyisland.irc.IRCServer;
-import com.getmyisland.irc.IRCServerHandler;
+import com.getmyisland.irc.IrcServer;
+import com.getmyisland.irc.IrcServerHandler;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
 
 public class ServerSelectionController {
 	@FXML
@@ -67,18 +64,7 @@ public class ServerSelectionController {
 		}
 
 		final ConnectionController[] classArr = new ConnectionController[1];
-		ConnectionController ircClientController = null;
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/getmyisland/fx/ConnectionWindow.fxml"));
-			Pane root = loader.load();
-			ircClientController = (ConnectionController) loader.getController();
-			classArr[0] = ircClientController; 
-			Client.getStage().getScene().setRoot(root);
-			Client.getStage().setHeight(root.getPrefHeight());
-			Client.getStage().setWidth(root.getPrefWidth());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		classArr[0] = Client.loadConnectionWindow();
 
 		Thread connectionThread = new Thread() {
 			public void run() {
@@ -98,7 +84,7 @@ public class ServerSelectionController {
 		statusContentLabel.setText("");
 
 		// Populate the server list view
-		for (IRCServer server : IRCServerHandler.getIRCServers()) {
+		for (IrcServer server : IrcServerHandler.getIRCServers()) {
 			serverListView.getItems().add(server.getName());
 		}
 
@@ -106,7 +92,7 @@ public class ServerSelectionController {
 		serverListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				IRCServer ircServer = IRCServerHandler.getIRCServerByName(newValue);
+				IrcServer ircServer = IrcServerHandler.getIRCServerByName(newValue);
 
 				if (ircServer != null) {
 					// Set content of url text field
@@ -117,8 +103,5 @@ public class ServerSelectionController {
 				}
 			}
 		});
-
-		Client.getStage().hide();
-		Client.getStage().show();
 	}
 }

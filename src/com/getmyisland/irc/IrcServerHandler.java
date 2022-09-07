@@ -8,12 +8,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class IRCServerHandler {
+public class IrcServerHandler {
+	/**
+	 * Reads into the IRC Server Property file and returns an InputStream.
+	 * 
+	 * @return
+	 */
 	private static InputStream getIRCPropertyFileInputStream() {
-		return IRCServerHandler.class.getClassLoader().getResourceAsStream("ircServerProperties.csv");
+		return IrcServerHandler.class.getClassLoader().getResourceAsStream("ircServerProperties.csv");
 	}
 	
-	public static List<IRCServer> getIRCServers() {
+	/**
+	 * Returns a list of all IRC servers located in the properties file.
+	 * 
+	 * @return
+	 */
+	public static List<IrcServer> getIRCServers() {
 		List<List<String>> serverStringList = new ArrayList<>();
 		// Reading the property file
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(getIRCPropertyFileInputStream(), "UTF-8"))) {
@@ -25,10 +35,10 @@ public class IRCServerHandler {
 		    }
 		} catch (IOException e) {
 			e.printStackTrace();
-			return new ArrayList<IRCServer>();
+			return new ArrayList<IrcServer>();
 		}
 
-		List<IRCServer> serverList = new ArrayList<>();
+		List<IrcServer> serverList = new ArrayList<>();
 		// Creating the irc server list
 		for(List<String> server : serverStringList) {
 			if(server.size() < 3) {
@@ -37,16 +47,22 @@ public class IRCServerHandler {
 			}
 			
 			// First value is name, second is url and third is port
-			serverList.add(new IRCServer(server.get(0), server.get(1), Integer.parseInt(server.get(2))));
+			serverList.add(new IrcServer(server.get(0), server.get(1), Integer.parseInt(server.get(2))));
 		}
 		return serverList;
 	}
 	
-	public static IRCServer getIRCServerByName(final String name) {
-		List<IRCServer> serverList = getIRCServers();
+	/**
+	 * Searches for a specific IRC server with a matching name.
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public static IrcServer getIRCServerByName(final String name) {
+		List<IrcServer> serverList = getIRCServers();
 		
 		// Go through each server and check the name
-		for(IRCServer server : serverList) {
+		for(IrcServer server : serverList) {
 			if(server.getName().equals(name)) {
 				return server;
 			}
