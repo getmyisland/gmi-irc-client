@@ -9,32 +9,32 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.getmyisland.fx.ServerSelectionController">
    <children>
-      <ListView fx:id="serverListView" layoutX="37.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="200.0" />
-      <HBox layoutX="262.0" layoutY="30.0" prefHeight="50.0" prefWidth="300.0">
+      <ListView fx:id="serverListView" layoutX="37.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="200.0" AnchorPane.bottomAnchor="27.600000000000023" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="30.0" />
+      <HBox layoutX="262.0" layoutY="30.0" prefHeight="50.0" prefWidth="300.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="30.0">
          <children>
             <Label prefHeight="25.0" prefWidth="100.0" text="Login" />
             <TextField fx:id="loginTextField" />
          </children>
       </HBox>
-      <HBox layoutX="262.0" layoutY="80.0" prefHeight="50.0" prefWidth="300.0">
+      <HBox layoutX="262.0" layoutY="80.0" prefHeight="50.0" prefWidth="300.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="38.0">
          <children>
             <Label prefHeight="25.0" prefWidth="100.0" text="Nickname" />
             <TextField fx:id="nicknameTextField" />
          </children>
       </HBox>
-      <HBox layoutX="262.0" layoutY="130.0" prefHeight="50.0" prefWidth="300.0">
+      <HBox layoutX="262.0" layoutY="130.0" prefHeight="50.0" prefWidth="300.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="38.0">
          <children>
             <Label prefHeight="25.0" prefWidth="100.0" text="Server URL" />
             <TextField fx:id="serverURLTextField" />
          </children>
       </HBox>
-      <HBox layoutX="262.0" layoutY="180.0" prefHeight="50.0" prefWidth="300.0">
+      <HBox layoutX="262.0" layoutY="180.0" prefHeight="50.0" prefWidth="300.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="38.0">
          <children>
             <Label prefHeight="25.0" prefWidth="100.0" text="Port" />
             <TextField fx:id="portTextField" />
          </children>
       </HBox>
-      <Button fx:id="connectButton" layoutX="262.0" layoutY="230.0" mnemonicParsing="false" onAction="#onConnectButtonClicked" text="Connect" />
-      <Label fx:id="statusContentLabel" alignment="TOP_LEFT" layoutX="262.0" layoutY="271.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="95.0" prefWidth="292.0" text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet." textFill="RED" wrapText="true" />
+      <Button fx:id="connectButton" layoutX="262.0" layoutY="230.0" mnemonicParsing="false" onAction="#onConnectButtonClicked" text="Connect" AnchorPane.leftAnchor="262.0" AnchorPane.topAnchor="230.0" />
+      <Label fx:id="statusContentLabel" alignment="TOP_LEFT" layoutX="262.0" layoutY="271.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="95.0" prefWidth="292.0" text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet." textFill="RED" wrapText="true" AnchorPane.bottomAnchor="33.8" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="46.0" />
    </children>
 </AnchorPane>

@@ -1,5 +1,8 @@
 package com.getmyisland.fx;
 
+import java.io.IOException;
+
+import com.getmyisland.irc.Client;
 import com.getmyisland.irc.IRCConnectionHandler;
 import com.getmyisland.irc.IRCServer;
 import com.getmyisland.irc.IRCServerHandler;
@@ -8,10 +11,12 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 
 public class ServerSelectionController {
 	@FXML
@@ -38,22 +43,22 @@ public class ServerSelectionController {
 	@FXML
 	void onConnectButtonClicked(ActionEvent event) {
 		// Filter wrong configurations
-		if(loginTextField.getText().equals("")) {
+		if (loginTextField.getText().equals("")) {
 			statusContentLabel.setText("Login field can't be empty.");
 			return;
 		}
-		
-		if(nicknameTextField.getText().equals("")) {
+
+		if (nicknameTextField.getText().equals("")) {
 			statusContentLabel.setText("Nickname field can't be empty.");
 			return;
 		}
-		
+
 		// TODO with Regex
-		if(!serverURLTextField.getText().contains(".")) {
+		if (!serverURLTextField.getText().contains(".")) {
 			statusContentLabel.setText("Server URL is not a valid URL.");
 			return;
 		}
-		
+
 		try {
 			Integer.parseInt(portTextField.getText());
 		} catch (NumberFormatException e) {
@@ -61,16 +66,37 @@ public class ServerSelectionController {
 			return;
 		}
 
-		// Call connection function
-		IRCConnectionHandler.connect(loginTextField.getText(), nicknameTextField.getText(),
-				serverURLTextField.getText(), portTextField.getText());
+		final IRCClientController[] classArr = new IRCClientController[1];
+		IRCClientController ircClientController = null;
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/getmyisland/fx/IRCClient.fxml"));
+			Pane root = loader.load();
+			ircClientController = (IRCClientController) loader.getController();
+			classArr[0] = ircClientController; 
+			Client.getStage().getScene().setRoot(root);
+			Client.getStage().setHeight(root.getPrefHeight());
+			Client.getStage().setWidth(root.getPrefWidth());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		Thread connectionThread = new Thread() {
+			public void run() {
+				// Call connection function
+				IRCConnectionHandler.connect(classArr[0], loginTextField.getText(),
+						nicknameTextField.getText(), serverURLTextField.getText(),
+						Integer.parseInt(portTextField.getText()));
+			}
+		};
+
+		connectionThread.start();
 	}
 
 	@FXML
 	private void initialize() {
 		// Clear status text
 		statusContentLabel.setText("");
-		
+
 		// Populate the server list view
 		for (IRCServer server : IRCServerHandler.getIRCServers()) {
 			serverListView.getItems().add(server.getName());
@@ -81,7 +107,7 @@ public class ServerSelectionController {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 				IRCServer ircServer = IRCServerHandler.getIRCServerByName(newValue);
-				
+
 				if (ircServer != null) {
 					// Set content of url text field
 					serverURLTextField.setText(ircServer.getUrl());
@@ -91,5 +117,8 @@ public class ServerSelectionController {
 				}
 			}
 		});
+
+		Client.getStage().hide();
+		Client.getStage().show();
 	}
 }

@@ -1,32 +1,22 @@
 package com.getmyisland.irc;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class IRCServerHandler {
-	private static File getIRCPropertyFile() {
-		File root = new File("");
-		File ircPropertyFile = new File(root.getAbsolutePath() + "/resources/ircServerProperties.csv");
-		return ircPropertyFile;
+	private static InputStream getIRCPropertyFileInputStream() {
+		return IRCServerHandler.class.getClassLoader().getResourceAsStream("ircServerProperties.csv");
 	}
 	
 	public static List<IRCServer> getIRCServers() {
-		File ircPropertyFile = getIRCPropertyFile();
-		
-		// Making sure the property file exists
-		if (!ircPropertyFile.exists()) {
-			System.err.println("ERROR: IRC Server Property file not found");
-			return new ArrayList<IRCServer>();
-		}
-
 		List<List<String>> serverStringList = new ArrayList<>();
 		// Reading the property file
-		try (BufferedReader br = new BufferedReader(new FileReader(ircPropertyFile.getAbsolutePath()))) {
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(getIRCPropertyFileInputStream(), "UTF-8"))) {
 		    String line;
 		    while ((line = br.readLine()) != null) {
 		        String[] values = line.split(",");
