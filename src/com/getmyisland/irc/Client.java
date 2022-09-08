@@ -22,7 +22,6 @@ public class Client extends Application {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/getmyisland/fx/ServerSelectionWindow.fxml"));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
-
 		// stage.getIcons().add(new
 		// Image("/de/morihofi/tafelquiz/images/AppTafelQuizUpdate.png"));
 		stage.setTitle("gmi-irc-client");

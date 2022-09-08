@@ -103,5 +103,7 @@ public class ServerSelectionController {
 				}
 			}
 		});
+		
+		connectButton.setDefaultButton(true);
 	}
 }

@@ -2,15 +2,37 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.getmyisland.fx.ConnectionController">
    <children>
-      <TextArea fx:id="chatTextArea" editable="false" layoutX="296.0" layoutY="14.0" prefHeight="527.0" prefWidth="590.0" wrapText="true" AnchorPane.bottomAnchor="58.799999999999955" AnchorPane.leftAnchor="296.0" AnchorPane.rightAnchor="13.600000000000023" AnchorPane.topAnchor="14.0" />
-      <ListView fx:id="channelListView" layoutX="14.0" layoutY="14.0" prefHeight="574.0" prefWidth="268.0" AnchorPane.bottomAnchor="11.600000000000023" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
-      <TextField fx:id="userInputTextField" layoutX="296.0" layoutY="551.0" prefHeight="34.0" prefWidth="490.0" AnchorPane.bottomAnchor="14.600000000000001" AnchorPane.leftAnchor="296.0" AnchorPane.rightAnchor="113.60000000000002" />
-      <Button layoutX="796.0" layoutY="553.0" mnemonicParsing="false" onAction="#onSend" prefHeight="34.0" prefWidth="90.0" text="Send" AnchorPane.bottomAnchor="12.600000000000001" AnchorPane.rightAnchor="13.599999999999994" />
+      <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TextArea fx:id="chatTextArea" editable="false" layoutX="296.0" layoutY="39.0" prefHeight="500.0" prefWidth="590.0" wrapText="true" AnchorPane.bottomAnchor="59.0" AnchorPane.leftAnchor="296.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="39.0" />
+      <ListView fx:id="channelListView" layoutX="14.0" layoutY="40.0" prefHeight="550.0" prefWidth="268.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="40.0" />
+      <TextField fx:id="userInputTextField" layoutX="296.0" layoutY="550.0" prefHeight="35.0" prefWidth="490.0" />
+      <Button fx:id="sendButton" layoutX="795.0" layoutY="550.0" mnemonicParsing="false" onAction="#onSendButtonClicked" prefHeight="35.0" prefWidth="90.0" text="Send" />
    </children>
 </AnchorPane>

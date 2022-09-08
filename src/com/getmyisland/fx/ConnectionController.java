@@ -4,6 +4,7 @@ import com.getmyisland.irc.ConnectionHandler;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -19,14 +20,17 @@ public class ConnectionController {
     private TextField userInputTextField;
 
     @FXML
-    void onSend(ActionEvent event) {
+    private Button sendButton;
+    
+    @FXML
+    void onSendButtonClicked(ActionEvent event) {
     	ConnectionHandler.sendMessage(userInputTextField.getText());
     	userInputTextField.setText("");
     }
     
     @FXML
-    private void initialize() {
-    	
+    void initialize() {
+    	sendButton.setDefaultButton(true);
     }
     
     public TextArea getChatTextArea() {
