@@ -53,9 +53,6 @@ public class ConnectionHandler {
 			reader = null;
 			ex.printStackTrace();
 		}
-		
-		// In case connection terminates load the server selection
-		Client.loadServerSelectionWindow();
 	}
 
 	public static void sendMessage(final String messageContent) {
@@ -70,5 +67,24 @@ public class ConnectionHandler {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void disconnect() {
+		if (socket == null || writer == null) {
+			System.err.println("No connection currently established");
+			return;
+		}
+		
+		try {
+			socket.close();
+			socket = null;
+			
+		} catch (IOException e) {
+			socket = null;
+			e.printStackTrace();
+		}
+		
+		writer = null;
+		reader = null;
 	}
 }
