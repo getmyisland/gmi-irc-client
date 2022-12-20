@@ -2,13 +2,13 @@ package com.getmyisland.irc;
 
 public class IrcServer {
 	/** Name of the IRC Server */
-	private String name;
+	private final String name;
 	
 	/** URL of the IRC server */
-	private String url;
+	private final String url;
 	
 	/** Port the IRC server uses */
-	private int port;
+	private final int port;
 	
 	/**
 	 * Creates new IRC Server object

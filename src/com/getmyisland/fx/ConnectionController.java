@@ -65,6 +65,9 @@ public class ConnectionController {
     @FXML
     void initialize() {
     	sendButton.setDefaultButton(true);
+    	
+    	// Call connection function
+		ConnectionHandler.connect(this);
     }
     
     public TextArea getChatTextArea() {

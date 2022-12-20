@@ -4,6 +4,7 @@ import java.util.regex.Pattern;
 
 import com.getmyisland.irc.Client;
 import com.getmyisland.irc.ConnectionHandler;
+import com.getmyisland.irc.ConnectionProperties;
 import com.getmyisland.irc.IrcServer;
 import com.getmyisland.irc.IrcServerHandler;
 
@@ -57,25 +58,21 @@ public class ServerSelectionController {
 		}
 
 		try {
+			// Try parsing the port
 			Integer.parseInt(portTextField.getText());
 		} catch (NumberFormatException e) {
 			statusContentLabel.setText("Port must be a positive non-decimal number.");
 			return;
 		}
 
-		final ConnectionController[] classArr = new ConnectionController[1];
-		classArr[0] = Client.loadConnectionWindow();
-
-		Thread connectionThread = new Thread() {
-			public void run() {
-				// Call connection function
-				ConnectionHandler.connect(classArr[0], loginTextField.getText(),
-						nicknameTextField.getText(), serverURLTextField.getText(),
-						Integer.parseInt(portTextField.getText()));
-			}
-		};
-
-		connectionThread.start();
+		// Set the properties
+		ConnectionProperties.LOGIN = loginTextField.getText();
+		ConnectionProperties.NICKNAME = nicknameTextField.getText();
+		ConnectionProperties.URL = serverURLTextField.getText();
+		ConnectionProperties.PORT = Integer.parseInt(portTextField.getText());
+		
+		// Create the window
+		Client.loadConnectionWindow();
 	}
 
 	@FXML
